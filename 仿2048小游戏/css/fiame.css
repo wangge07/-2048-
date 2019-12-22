@@ -1,0 +1,248 @@
+<style media="screen">
+	body{
+		
+	}
+	section{
+	 	width: 1024px;
+	 	height: 667px;
+	 	margin: 0 auto;
+	  background-color:rgba(255,160,122,0.5);
+		border: #9999FF solid 5px;       /*边框*/
+		box-shadow: #FFCCCC 1px 1px 1px; 
+	  position: relative;
+		border-radius:50px;
+	  }
+	  section h1{
+	  	text-align: center;
+	  	color: #FFCCCC;
+	  	height:50px;      /*高度*/
+	  	font-size:40px;   /*大小*/
+	  	position: absolute;
+	  	top:35px;
+	  	left:19%;
+	  }                  /*设置 标题"仿2048小游戏" */
+	 .h2{
+	 position: absolute;
+	  	top:17%;
+	  	right:9%;	
+	  	color:#CCCCFF !important;
+	  	font-size: 24px;           /*设置 "模式选择" */
+	 }
+	 .h2_1{
+	 	color: white;
+	 	position: absolute;        /*位置*/
+	  	top:20%;                   /*距离顶部*/
+	  	right:26%;                 /*距离右边*/
+	  	color:#99FFFF !important;
+	  	font-size: 26px;           /*设置 "得--分" */
+	 }
+    #game {
+      display: none;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: #FFCCFF;
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .clear:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+    width: 50%;
+    float: right;
+    height: 80%;
+    }
+
+    .scoreShow {
+      height: 100%;
+      width: 50%;
+      text-align:center;
+      color:#FFCCFF;
+    }
+    .model {
+      text-decoration: none;
+      color:#FFCCFF;       /*等级选择字体颜色*/
+      background-color: #bbada0;
+      font-size: 30px;     /*难度选择大小*/ 
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      border-radius:16px ;    /*难度选择框格式*/ 
+      background: #FFFFCC;    /*难度选择框底色*/
+      border: 1px solid #FF6600;   /*难度选择框边框底色*/
+      cursor: hand;
+    }
+
+    .head {
+      width:40%;
+      height:20%;          
+      margin: 0 auto;
+      font-size:45px;      /*难度选择框距离大小*/
+      position: absolute;
+      right:0%;
+      top:25%;            /*难度选择框位置*/
+    }
+     #score{
+    	width: 300px;      /*宽度*/
+    	height: 50px;      /*高度*/
+    	display: block;
+    	position: absolute;
+    	top: 30%;
+    	left: -10%;
+    	color:#66FFCC;            /*显示的分数的位置*/
+    	
+    }
+    #gridPanel {
+      width: 480px;
+      height: 480px;
+      left:10%;
+      top:25%;
+      background-color:#CCFF66;;
+      border-radius: 10px;
+      position:absolute;
+      z-index: 1;                  /*游戏界面网格设置*/
+    }
+    .grid,
+    .cell {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+    }
+
+    .grid {
+      background-color:#FFFF99;
+      float: left;
+      margin: 16px 0 0 16px;      /*游戏界面方块设置*/
+    }
+
+    .cell {
+      position: absolute;
+      font-size: 60px;
+      text-align: center;
+      line-height: 100px;
+      color: #00CCCC;      /*选中移动键后的颜色*/
+    }
+
+    .n2 {
+      background-color: #eee3da
+    }
+
+    .n4 {
+      background-color: #ede0c8
+    }
+
+    .n8 {
+      background-color: #f2b179
+    }
+
+    .n16 {
+      background-color: #f59563
+    }
+
+    .n32 {
+      background-color: #f67c5f
+    }
+
+    .n64 {
+      background-color: #f65e3b
+    }
+
+    .n128 {
+      background-color: #edcf72
+    }
+
+    .n256 {
+      background-color: #edcc61
+    }
+
+    .n512 {
+      background-color: #9c0
+    }
+
+    .n1024 {
+      background-color: #33b5e5
+    }
+
+    .n2048 {
+      background-color: #09c
+    }
+
+    .n4096 {
+      background-color: #a6c
+    }
+
+    .n8192 {
+      background-color: #93c
+    }                                /*数字对应框颜色*/
+
+    .n2,
+    .n4 {
+      color: #776e65      /*2,4对应的字体颜色*/
+    }
+    #gameover {
+      width: 100%;
+      display: none;
+      position: fixed;
+      left: 50%;
+      right: 50%;
+      top: 148px;
+      width: 290px;                    /*游戏结束底框的宽度*/
+      height: 250px;                   /*高度*/
+      border-radius: 60px;             /*棱形边*/
+      background-color: white;         /*游戏结束的底色*/
+      margin-left: -110px;
+      text-align: center;
+      z-index: 5;                /*游戏结束的设置*/
+    }
+    #gameover>a {
+      display: inline-block;
+      width: 170px;
+      height: 50px;
+      border-radius: 10px;
+      text-decoration: none;
+      background-color: #CCFF99;
+      color: #CCCC66;
+      font-size: 36px;            /* "重新开始" 的设置*/
+    }
+    .button{
+    	width:50%;
+    	height:10%;
+    	/*//background:yellowgreen;*/
+    	position: absolute;
+    	bottom: 15%;
+    	right:-15%;        /*控制键的位置*/        
+    }
+    .button button{
+    	width: 98px;
+    	height:62px;
+    	line-height:-36px;
+    	border-radius:30px;               /*控制键框的形状*/
+    	background:#FFFFF;               /*控制键框的颜色*/
+    	opacity: 1.5;
+    	margin-bottom:0px;               /*控制键框的设置*/
+    }
+    .button button:hover{
+    	font-size:60px;
+    	color:white;
+    	transition-duration: 0.2s;
+    	
+    }
+    .button button:active{
+    	background:#CCFF99;
+    }
+    .button2{
+    	position: absolute;
+    	right:60%;            /*上键位置*/
+    	top:-78px;
+    }
